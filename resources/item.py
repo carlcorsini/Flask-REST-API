@@ -44,7 +44,7 @@ class Item(Resource):
 
         return {'message': 'Item was deleted.'}
 
-    def put(self, name, store_id):
+    def put(self, name):
         data = Item.parser.parse_args()
 
         item = ItemModel.find_by_name(name)
@@ -55,7 +55,6 @@ class Item(Resource):
             item = ItemModel(name, **data)
         else:
             item.price = data['price']
-            item.store_id = data['store_id']
 
             item.save_to_db()
 
